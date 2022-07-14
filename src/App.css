@@ -1,9 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
 
 .navbar {
   margin-bottom: 1rem;
+}
+
+.navbar-image {
+  width: 50px;
+  margin-right: 1rem;
 }
 
 .main-container {
@@ -20,6 +31,22 @@
 }
 
 .map {
-  width: 50rem;
+  width: 30rem;
   margin: 0 auto;
+}
+
+.footer {
+  margin-top: 20rem;
+  padding: 1rem;
+  background-color: #888888;
+  color: #fff;
+}
+
+.card img {
+  width: 6rem;
+  margin-top: 1rem;
+}
+
+.air-pressure-image {
+  transform: scale(0.75);
 }

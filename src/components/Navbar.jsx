@@ -4,8 +4,13 @@ const Navbar = () => {
   return (
     <nav className='navbar navbar-expand-lg bg-light'>
       <div className='container-fluid'>
+        <img
+          className='navbar-image'
+          src={require('../img/weather.png')}
+          alt='...'
+        />
         <a className='navbar-brand' href='/#'>
-          Robo Weather
+          RoboWeather
         </a>
         <button
           className='navbar-toggler'
