@@ -7,9 +7,13 @@ import Map from './Map';
 
 import { useGetCurrentWeatherLocationQuery } from '../redux/services/weatherData';
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 const Main = () => {
-  const lon = 38.5;
-  const lat = -78.5;
+  const lon = 26.3585792;
+  const lat = 46.9336064;
   const { data } = useGetCurrentWeatherLocationQuery({ lon, lat });
 
   if (!data) {
@@ -18,9 +22,27 @@ const Main = () => {
     return (
       <div className='main-container'>
         <Card data={data} />
-        <CardList />
-        <CardLink />
-        <CardLink />
+
+        <Container fluid>
+          <Row>
+            <Col>
+              <CardList data={data} />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <CardLink />
+            </Col>
+            <Col>
+              <CardLink />
+            </Col>
+
+            <Col>
+              <CardLink />
+            </Col>
+          </Row>
+        </Container>
+
         <Map />
       </div>
     );

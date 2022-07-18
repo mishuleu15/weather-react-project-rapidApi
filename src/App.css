@@ -50,3 +50,78 @@
 .air-pressure-image {
   transform: scale(0.75);
 }
+
+span {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+.nav-link {
+  margin-top: 0.5rem;
+}
+
+.nav-link.city-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.card-subsection {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.air-quality {
+  margin: 0 auto;
+}
+
+.col-md-4 h4 {
+  margin-top: 1rem;
+}
+
+.active {
+  color: greenyellow;
+}
+
+.inactive {
+  color: yellow;
+}
+
+.card-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-value {
+  color: cadetblue;
+}
+
+.card-value-temp {
+  color: cadetblue;
+  font-size: 3rem;
+}
+
+.card-list-header {
+  font-size: 1rem;
+}
+
+.card-list-value {
+  font-size: 1rem;
+  color: cadetblue;
+}
+
+.list-group-item {
+  display: flex !important;
+  justify-content: space-between;
+}
+
+.celsius {
+  width: 4rem !important;
+  margin-top: 0.6rem !important;
+}
+
+@media (max-width: 575.98px) {
+  .card {
+    width: 90%;
+  }
+}

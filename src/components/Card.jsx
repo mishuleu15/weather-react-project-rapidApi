@@ -1,14 +1,18 @@
 import React from 'react';
 
+import millify from 'millify';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 import {
   faDroplet,
   faTemperatureHigh,
+  faWind,
+  faCloud,
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faDroplet, faTemperatureHigh);
+library.add(faDroplet, faTemperatureHigh, faWind, faCloud, faCloud);
 
 const Card = ({ data }) => {
   const { data: weatherData } = data;
@@ -19,27 +23,52 @@ const Card = ({ data }) => {
         <div className='col-md-4'>
           <img
             src={
-              weatherData[0].precip > 0
+              weatherData[0].precip === 0
                 ? require('../img/sunny.png')
                 : require('../img/logo.png')
             }
             className='img-fluid rounded-start'
             alt='...'
           />
+          <h4>
+            <span className='air-quality'>Air Quality</span>{' '}
+            <div className={weatherData[0].aqi <= 50 ? 'active' : 'inactive'}>
+              {weatherData[0].aqi <= 50 ? 'Excellent' : 'Moderate'}
+            </div>
+          </h4>
         </div>
+
         <div className='col-md-8'>
           <div className='card-body'>
             <h5 className='card-title'>Current Weather</h5>
             <h5 className='card-title'>
               <FontAwesomeIcon icon='fa-solid fa-temperature-high' size='2x' />{' '}
-              Temp {weatherData[0].app_temp}
+              Temp{' '}
+              <span className='card-value-temp'>{weatherData[0].temp}</span>
+              <img
+                className='celsius'
+                src={require('../img/degrees.png')}
+                alt='degrees'
+              />
             </h5>
+
             <hr />
-            <p className='card-text'>
-              Precip{' '}
-              <FontAwesomeIcon icon='fa-xs fa-solid fa-droplet' size='lg' />{' '}
-              {weatherData[0].precip}
-            </p>
+            <div className='card-subsection'>
+              {' '}
+              <p className='card-text'>
+                Precip{' '}
+                <FontAwesomeIcon icon='fa-xs fa-solid fa-droplet' size='lg' />{' '}
+                <span className='card-value'>{weatherData[0].precip}</span>
+              </p>
+              <p className='card-text'>
+                Wind <FontAwesomeIcon icon='fa-xs fa-solid fa-wind' size='lg' />{' '}
+                <span className='card-value'>
+                  {weatherData[0].wind_cdir} {millify(weatherData[0].wind_spd)}
+                </span>{' '}
+                km/h
+              </p>
+            </div>
+
             <hr />
             <p className='card-text'>
               Pressure{' '}
@@ -48,13 +77,14 @@ const Card = ({ data }) => {
                 src={require('../img/atmospheric-pressure.png')}
                 alt='...'
               />{' '}
-              {weatherData[0].pres} mb
+              <span className='card-value'>{millify(weatherData[0].pres)}</span>{' '}
+              mb
             </p>
             <hr />
             <p className='card-text'>
-              Pressure{' '}
-              <FontAwesomeIcon icon='fa-xs fa-solid fa-droplet' size='lg' />{' '}
-              {weatherData[0].pres}
+              <FontAwesomeIcon icon='fa-xs fa-solid fa-cloud' size='lg' />{' '}
+              Weather condition{' '}
+              <span>{weatherData[0].weather.description}</span>
             </p>
           </div>
         </div>
