@@ -4,6 +4,7 @@ import Card from './Card';
 import CardList from './CardList';
 import CardLink from './CardLink';
 import Map from './Map';
+import NewsCard from './NewsCard';
 
 import { useGetCurrentWeatherLocationQuery } from '../redux/services/weatherData';
 
@@ -21,24 +22,22 @@ const Main = () => {
   } else {
     return (
       <div className='main-container'>
-        <Card data={data} />
-
         <Container fluid>
           <Row>
-            <Col>
+            <Col className='weather-col'>
+              <h3>Current Weather</h3>
+              <hr />
+              <Card data={data} />
               <CardList data={data} />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
+
               <CardLink />
-            </Col>
-            <Col>
               <CardLink />
             </Col>
 
             <Col>
-              <CardLink />
+              <h3>Top Stories</h3>
+              <hr />
+              <NewsCard />
             </Col>
           </Row>
         </Container>

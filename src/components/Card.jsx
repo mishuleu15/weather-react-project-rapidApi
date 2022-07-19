@@ -18,7 +18,7 @@ const Card = ({ data }) => {
   const { data: weatherData } = data;
   console.log('card', weatherData[0]);
   return (
-    <div className='card mb-3' style={{ maxWidth: '540px' }}>
+    <div className='card  mb-3' style={{ maxWidth: '540px' }}>
       <div className='row g-0'>
         <div className='col-md-4'>
           <img
@@ -40,7 +40,6 @@ const Card = ({ data }) => {
 
         <div className='col-md-8'>
           <div className='card-body'>
-            <h5 className='card-title'>Current Weather</h5>
             <h5 className='card-title'>
               <FontAwesomeIcon icon='fa-solid fa-temperature-high' size='2x' />{' '}
               Temp{' '}
