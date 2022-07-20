@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import Card from './Card';
-import CardList from './CardList';
-import CardLink from './CardLink';
-import Map from './Map';
-import NewsCard from './NewsCard';
+import Card from '../components/Card';
+import CardList from '../components/CardList';
+import CardLink from '../components/CardLink';
+import Map from '../components/Map';
+import NewsCard from '../components/NewsCard';
 
 import { useGetCurrentWeatherLocationQuery } from '../redux/services/weatherData';
 
@@ -16,6 +16,10 @@ const Main = () => {
   const lon = 26.3585792;
   const lat = 46.9336064;
   const { data } = useGetCurrentWeatherLocationQuery({ lon, lat });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!data) {
     return <h1>Loading...</h1>;
@@ -37,11 +41,10 @@ const Main = () => {
             <Col>
               <h3>Top Stories</h3>
               <hr />
-              <NewsCard />
+              <NewsCard simplified />
             </Col>
           </Row>
         </Container>
-
         <Map />
       </div>
     );

@@ -146,6 +146,25 @@ hr {
   margin: 1rem auto !important;
 }
 
+.container-newsPage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.links-cardNews {
+  text-decoration: none;
+  color: cadetblue;
+}
+
+.links-cardNews:hover {
+  color: #888888;
+}
+
+.weatherNews-title {
+  margin: 2rem auto;
+}
+
 @media (max-width: 575.98px) {
   .card {
     width: 90%;
