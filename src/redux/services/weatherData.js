@@ -14,7 +14,7 @@ export const weatherApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: url }),
   endpoints: (builder) => ({
     getCurrentWeatherLocation: builder.query({
-      query: ({ lon, lat }) => createRequest(`current?lon=${lon}&lat=${lat}`),
+      query: ({ lng, lat }) => createRequest(`current?lon=${lng}&lat=${lat}`),
     }),
   }),
 });

@@ -1,14 +1,8 @@
 import React from 'react';
 
-import { useGetCurrentWeatherLocationQuery } from '../redux/services/weatherData';
-
-const Navbar = () => {
-  const lon = 26.3585792;
-  const lat = 46.9336064;
-  const { data } = useGetCurrentWeatherLocationQuery({ lon, lat });
-
+const Navbar = ({ data }) => {
   if (!data) {
-    return <h1>Loading...</h1>;
+    return;
   } else {
     const { data: weatherData } = data;
     return (

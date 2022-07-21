@@ -5,12 +5,18 @@ import { useGetWeatherNewsQuery } from '../redux/services/weatherNews';
 
 const NewsCard = ({ simplified }) => {
   const { data: weatherNews } = useGetWeatherNewsQuery({
-    count: simplified ? 5 : 17,
+    count: simplified ? 5 : 13,
   });
 
-  console.log(weatherNews);
+  // console.log(weatherNews);
   if (weatherNews === undefined) {
-    return <h1>Loading...</h1>;
+    return (
+      <div
+        class='spinner-grow'
+        style={{ width: '10rem', height: '10rem' }}
+        role='status'
+      ></div>
+    );
   } else {
     return (
       <>

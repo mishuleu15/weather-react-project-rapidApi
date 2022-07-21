@@ -16,7 +16,6 @@ library.add(faDroplet, faTemperatureHigh, faWind, faCloud, faCloud);
 
 const Card = ({ data }) => {
   const { data: weatherData } = data;
-  console.log('card', weatherData[0]);
   return (
     <div className='card  mb-3' style={{ maxWidth: '540px' }}>
       <div className='row g-0'>
