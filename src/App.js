@@ -5,6 +5,8 @@ import Main from './Pages/Main';
 import Footer from './components/Footer';
 import NewsPage from './Pages/NewsPage';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { setLat, setLng } from './redux/services/getCoords';
 import { Routes, Route } from 'react-router-dom';
 
 import { useGetCurrentWeatherLocationQuery } from './redux/services/weatherData';
@@ -12,7 +14,10 @@ import { useGetCurrentWeatherLocationQuery } from './redux/services/weatherData'
 import './App.css';
 
 function App() {
-  const [coords, setCoords] = useState({ lng: -73.935242, lat: 40.73061 });
+  const count = useSelector((state) => state.setCoords);
+  const dispatch = useDispatch();
+
+  const [coords, setCoords] = useState(count);
 
   const { lat, lng } = coords;
 
@@ -21,10 +26,12 @@ function App() {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
-        setCoords({ lat: latitude, lng: longitude });
+        dispatch(setLat(latitude));
+        dispatch(setLng(longitude));
+        setCoords(count);
       }
     );
-  }, []);
+  }, [count, dispatch]);
 
   return (
     <div className='App'>

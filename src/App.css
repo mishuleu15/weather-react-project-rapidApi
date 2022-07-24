@@ -27,11 +27,6 @@
   margin: 1rem auto;
 }
 
-.map {
-  width: 30rem;
-  margin: 0 auto;
-}
-
 .footer {
   background-color: #888888;
   color: #fff;
@@ -173,6 +168,41 @@ hr {
   margin-top: -50px;
 }
 
+.leaflet-container {
+  width: 70%;
+  height: 50vh;
+  margin: 2rem auto;
+  border-radius: 15px;
+  z-index: 1;
+}
+
+.leaflet-control-zoom.leaflet-bar.leaflet-control a.leaflet-control-zoom-in {
+  border-top-left-radius: 30%;
+  border-top-right-radius: 30%;
+}
+
+.leaflet-control-zoom.leaflet-bar.leaflet-control a.leaflet-control-zoom-out {
+  border-bottom-left-radius: 30%;
+  border-bottom-right-radius: 30%;
+}
+
+.leaflet-control-zoom a span {
+  color: cadetblue;
+  margin: 0 auto;
+}
+
+.leaflet-popup {
+  top: -95px;
+}
+
+.leaflet-popup-content span {
+  font-size: 1rem;
+}
+
+.leaflet-popup-close-button {
+  margin-right: 0.5rem;
+}
+
 @media (max-width: 810px) {
   .container-newsPage {
     grid-template-columns: repeat(2, 1fr);
@@ -187,5 +217,9 @@ hr {
   }
   .container-newsPage {
     grid-template-columns: 1fr;
+  }
+
+  .leaflet-container {
+    width: 95%;
   }
 }

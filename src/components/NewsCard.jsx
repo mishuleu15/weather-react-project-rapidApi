@@ -12,7 +12,7 @@ const NewsCard = ({ simplified }) => {
   if (weatherNews === undefined) {
     return (
       <div
-        class='spinner-grow'
+        className='spinner-grow'
         style={{ width: '10rem', height: '10rem' }}
         role='status'
       ></div>
@@ -27,6 +27,7 @@ const NewsCard = ({ simplified }) => {
               target='_blank'
               className='card-link'
               key={news.name}
+              rel='noreferrer'
             >
               <div
                 className='card card-news mb-3'

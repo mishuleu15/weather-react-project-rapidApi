@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import Card from '../components/Card';
 import CardList from '../components/CardList';
@@ -18,7 +18,7 @@ const Main = ({ data }) => {
   if (!data) {
     return (
       <div
-        class='spinner-grow'
+        className='spinner-grow'
         style={{ width: '10rem', height: '10rem' }}
         role='status'
       ></div>
@@ -45,7 +45,7 @@ const Main = ({ data }) => {
             </Col>
           </Row>
         </Container>
-        {/* <Map /> */}
+        <Map />
       </div>
     );
   }

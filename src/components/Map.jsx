@@ -1,41 +1,29 @@
 import React from 'react';
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Graticule,
-} from 'react-simple-maps';
 
-const geoUrl =
-  'https://raw.githubusercontent.com/deldersveld/topojson/master/continents/europe.json';
+import DraggableMarker from '../utils/DraggableMarker';
+import { MapContainer, TileLayer, useMap } from 'react-leaflet';
+
+import { useSelector } from 'react-redux';
 
 const Map = () => {
+  const count = useSelector((state) => state.setCoords);
+
+  function ChangeMapView({ count }) {
+    const map = useMap();
+    map.setView(count, map.getZoom());
+
+    return null;
+  }
+
   return (
-    <div className='map'>
-      <ComposableMap
-        width={800}
-        height={800}
-        projection='geoAzimuthalEqualArea'
-        projectionConfig={{
-          rotate: [-10.0, -53.0, 0],
-          scale: 1200,
-        }}
-      >
-        <Graticule stroke='#EAEAEC' />
-        <Geographies geography={geoUrl}>
-          {({ geographies }) =>
-            geographies.map((geo) => (
-              <Geography
-                key={geo.rsmKey}
-                geography={geo}
-                fill='#9998A3'
-                stroke='#EAEAEC'
-              />
-            ))
-          }
-        </Geographies>
-      </ComposableMap>
-    </div>
+    <MapContainer center={count} zoom={13} scrollWheelZoom={true}>
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+      />
+      <ChangeMapView count={count} />
+      <DraggableMarker count={count} />
+    </MapContainer>
   );
 };
 

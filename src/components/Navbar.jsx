@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Navbar = ({ data }) => {
+  console.log('data', data);
   if (!data) {
     return;
   } else {
