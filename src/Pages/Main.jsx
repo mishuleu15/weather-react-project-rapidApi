@@ -35,7 +35,6 @@ const Main = ({ data }) => {
               <CardList data={data} />
 
               <CardLink />
-              <CardLink />
             </Col>
 
             <Col>

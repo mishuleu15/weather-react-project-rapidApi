@@ -19,6 +19,7 @@ export default function DraggableMarker({ count }) {
   const [draggable, setDraggable] = useState(false);
   const [position, setPosition] = useState(count);
   const markerRef = useRef(null);
+
   const eventHandlers = useMemo(
     () => ({
       dragend() {
@@ -30,6 +31,7 @@ export default function DraggableMarker({ count }) {
     }),
     []
   );
+
   const toggleDraggable = useCallback(() => {
     setDraggable((d) => !d);
   }, []);

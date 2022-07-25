@@ -20,20 +20,18 @@ const Card = ({ data }) => {
     <div className='card  mb-3' style={{ maxWidth: '540px' }}>
       <div className='row g-0'>
         <div className='col-md-4'>
-          <img
+          {/* <img
             src={
-              weatherData[0].precip === 0
+              weatherData[0]?.precip === 0
                 ? require('../img/sunny.png')
                 : require('../img/logo.png')
-            }
-            className='img-fluid rounded-start'
-            alt='...'
-          />
+            } */}
+          className='img-fluid rounded-start' alt='...' />
           <h4>
             <span className='air-quality'>Air Quality</span>{' '}
-            <div className={weatherData[0].aqi <= 50 ? 'active' : 'inactive'}>
-              {weatherData[0].aqi <= 50 ? 'Excellent' : 'Moderate'}
-            </div>
+            {/* <div className={weatherData[0]?.aqi <= 50 ? 'active' : 'inactive'}>
+              {weatherData[0]?.aqi <= 50 ? 'Excellent' : 'Moderate'}
+            </div> */}
           </h4>
         </div>
 
@@ -42,7 +40,7 @@ const Card = ({ data }) => {
             <h5 className='card-title'>
               <FontAwesomeIcon icon='fa-solid fa-temperature-high' size='2x' />{' '}
               Temp{' '}
-              <span className='card-value-temp'>{weatherData[0].temp}</span>
+              {/* <span className='card-value-temp'>{weatherData[0]?.temp}</span> */}
               <img
                 className='celsius'
                 src={require('../img/degrees.png')}
@@ -56,13 +54,14 @@ const Card = ({ data }) => {
               <p className='card-text'>
                 Precip{' '}
                 <FontAwesomeIcon icon='fa-xs fa-solid fa-droplet' size='lg' />{' '}
-                <span className='card-value'>{weatherData[0].precip}</span>
+                {/* <span className='card-value'>{weatherData[0]?.precip}</span> */}
               </p>
               <p className='card-text'>
                 Wind <FontAwesomeIcon icon='fa-xs fa-solid fa-wind' size='lg' />{' '}
-                <span className='card-value'>
-                  {weatherData[0].wind_cdir} {millify(weatherData[0].wind_spd)}
-                </span>{' '}
+                {/* <span className='card-value'>
+                  {weatherData[0]?.wind_cdir}{' '}
+                  {millify(weatherData[0]?.wind_spd)}
+                </span>{' '} */}
                 km/h
               </p>
             </div>
@@ -75,14 +74,16 @@ const Card = ({ data }) => {
                 src={require('../img/atmospheric-pressure.png')}
                 alt='...'
               />{' '}
-              <span className='card-value'>{millify(weatherData[0].pres)}</span>{' '}
+              <span className='card-value'>
+                {/* {millify(weatherData[0]?.pres)} */}
+              </span>{' '}
               mb
             </p>
             <hr />
             <p className='card-text'>
               <FontAwesomeIcon icon='fa-xs fa-solid fa-cloud' size='lg' />{' '}
               Weather condition{' '}
-              <span>{weatherData[0].weather.description}</span>
+              {/* <span>{weatherData[0]?.weather.description}</span> */}
             </p>
           </div>
         </div>

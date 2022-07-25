@@ -16,7 +16,13 @@ export const weatherApi = createApi({
     getCurrentWeatherLocation: builder.query({
       query: ({ lng, lat }) => createRequest(`current?lon=${lng}&lat=${lat}`),
     }),
+    getSevereWeatherAlerts: builder.query({
+      query: ({ lng, lat }) => createRequest(`alerts?lon=${lng}&lat=${lat}`),
+    }),
   }),
 });
 
-export const { useGetCurrentWeatherLocationQuery } = weatherApi;
+export const {
+  useGetCurrentWeatherLocationQuery,
+  useGetSevereWeatherAlertsQuery,
+} = weatherApi;

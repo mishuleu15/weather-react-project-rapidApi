@@ -5,7 +5,7 @@ import { useGetWeatherNewsQuery } from '../redux/services/weatherNews';
 
 const NewsCard = ({ simplified }) => {
   const { data: weatherNews } = useGetWeatherNewsQuery({
-    count: simplified ? 5 : 13,
+    count: simplified ? 5 : 25,
   });
 
   // console.log(weatherNews);
@@ -37,7 +37,7 @@ const NewsCard = ({ simplified }) => {
                   <div className='col-md-4'>
                     <img
                       src={
-                        news.image.thumbnail.contentUrl ||
+                        news?.image?.thumbnail?.contentUrl ||
                         'https://images.unsplash.com/photo-1590055531615-f16d36ffe8ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2VhdGhlciUyMGZvcmVjYXN0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
                       }
                       className='img-fluid rounded-start'
@@ -47,10 +47,10 @@ const NewsCard = ({ simplified }) => {
                   <div className='col-md-8'>
                     <div className='card-body'>
                       <h5 className='card-title'>
-                        {news.name.slice(0, 50)}...
+                        {news?.name.slice(0, 50)}...
                       </h5>
                       <p className='card-text'>
-                        {news.description.slice(0, 75)}...
+                        {news?.description.slice(0, 75)}...
                       </p>
                       <p className='card-text'></p>
                     </div>

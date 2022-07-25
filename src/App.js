@@ -9,7 +9,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setLat, setLng } from './redux/services/getCoords';
 import { Routes, Route } from 'react-router-dom';
 
-import { useGetCurrentWeatherLocationQuery } from './redux/services/weatherData';
+import {
+  useGetCurrentWeatherLocationQuery,
+  useGetSevereWeatherAlertsQuery,
+} from './redux/services/weatherData';
 
 import './App.css';
 
@@ -21,7 +24,16 @@ function App() {
 
   const { lat, lng } = coords;
 
-  const { data } = useGetCurrentWeatherLocationQuery({ lng, lat });
+  const data = { lat: 51.1657, lng: 10.4515 };
+
+  // const { data } = useGetCurrentWeatherLocationQuery({ lng, lat });
+
+  const { data: weatherAlerts } = useGetSevereWeatherAlertsQuery({
+    lng,
+    lat,
+  });
+
+  console.log(weatherAlerts);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
