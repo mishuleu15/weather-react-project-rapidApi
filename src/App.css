@@ -203,6 +203,27 @@ hr {
   margin-right: 0.5rem;
 }
 
+.weather_alert-container {
+  height: 100vh;
+}
+
+.severe-weather {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.card-text.card-link {
+  color: #ff6961;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-top: 1rem;
+}
+
+.card-link.text {
+  display: flex;
+  flex-direction: column;
+}
+
 @media (max-width: 810px) {
   .container-newsPage {
     grid-template-columns: repeat(2, 1fr);

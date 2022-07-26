@@ -1,19 +1,10 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
-
-import { useGetCurrentWeatherLocationQuery } from '../redux/services/weatherData';
-
-const Navbar = () => {
-  const data = useSelector((state) => state.setCoords);
-
-  const { lat, lng } = data;
-
-  const { data: weatherData } = useGetCurrentWeatherLocationQuery({ lng, lat });
-
-  if (!weatherData) {
+const Navbar = ({ data }) => {
+  if (!data) {
     return;
   } else {
+    const { data: weatherData } = data;
     return (
       <nav className='navbar navbar-expand-lg bg-light'>
         <div className='container-fluid'>
@@ -82,7 +73,7 @@ const Navbar = () => {
               </li>
               <li className='nav-item'>
                 <h2 className='nav-link city-name'>
-                  {weatherData.data[0]?.city_name}
+                  {weatherData[0]?.city_name}
                 </h2>
               </li>
             </ul>

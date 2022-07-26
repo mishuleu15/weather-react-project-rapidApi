@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Main from './Pages/Main';
 import Footer from './components/Footer';
 import NewsPage from './Pages/NewsPage';
+import SevereWeatherAlert from './Pages/SevereWeatherAlert';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setLat, setLng } from './redux/services/getCoords';
@@ -17,41 +18,43 @@ import {
 import './App.css';
 
 function App() {
-  const count = useSelector((state) => state.setCoords);
+  const coords = useSelector((state) => state.setCoords);
   const dispatch = useDispatch();
 
-  const [coords, setCoords] = useState(count);
+  const [userCoords, setUserCoords] = useState(coords);
 
-  const { lat, lng } = coords;
+  const { lat, lng } = userCoords;
 
-  const data = { lat: 51.1657, lng: 10.4515 };
+  // const data = { lat: 51.1657, lng: 10.4515 };
 
-  // const { data } = useGetCurrentWeatherLocationQuery({ lng, lat });
+  const { data } = useGetCurrentWeatherLocationQuery({ lng, lat });
 
   const { data: weatherAlerts } = useGetSevereWeatherAlertsQuery({
-    lng,
-    lat,
+    lng: 15.090278,
+    lat: 37.5,
   });
-
-  console.log(weatherAlerts);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
         dispatch(setLat(latitude));
         dispatch(setLng(longitude));
-        setCoords(count);
+        setUserCoords(coords);
       }
     );
-  }, [count, dispatch]);
+  }, [coords, dispatch]);
 
   return (
     <div className='App'>
       <Navbar data={data} />
       <div className='routes'>
         <Routes>
-          <Route exact path='/' element={<Main data={data} />} />
+          <Route exact path='/' element={<Main />} />
           <Route path='/news' element={<NewsPage />} />
+          <Route
+            path='/alert'
+            element={<SevereWeatherAlert weatherAlerts={weatherAlerts} />}
+          />
         </Routes>
       </div>
       <Footer />
