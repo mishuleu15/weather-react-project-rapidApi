@@ -204,7 +204,7 @@ hr {
 }
 
 .weather_alert-container {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .severe-weather {
@@ -222,6 +222,48 @@ hr {
 .card-link.text {
   display: flex;
   flex-direction: column;
+}
+
+.alert-link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.alert-link:hover {
+  color: whitesmoke;
+}
+
+.card-alert {
+  margin: 1rem;
+}
+
+.alert-descrip {
+  text-align: justify;
+  margin: 2rem;
+  font-size: 1.1rem;
+}
+
+.alert-severity {
+  margin: 2rem;
+}
+
+.alert-header.card-header {
+  background-color: cadetblue;
+  color: #fff;
+}
+
+.card-link.text-alert {
+  background-color: cadetblue;
+  width: 100px;
+  margin: 0 auto;
+  color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.card-link.text-alert:hover {
+  background-color: #fff;
+  color: cadetblue;
 }
 
 @media (max-width: 810px) {

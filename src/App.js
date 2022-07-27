@@ -30,8 +30,8 @@ function App() {
   const { data } = useGetCurrentWeatherLocationQuery({ lng, lat });
 
   const { data: weatherAlerts } = useGetSevereWeatherAlertsQuery({
-    lng: 15.090278,
-    lat: 37.5,
+    lat,
+    lng,
   });
 
   useEffect(() => {
