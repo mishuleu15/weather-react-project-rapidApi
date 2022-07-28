@@ -266,6 +266,15 @@ hr {
   color: cadetblue;
 }
 
+.weather48Hours-container {
+  min-height: 100vh;
+}
+
+.collapse-text {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 @media (max-width: 810px) {
   .container-newsPage {
     grid-template-columns: repeat(2, 1fr);

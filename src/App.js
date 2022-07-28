@@ -5,6 +5,7 @@ import Main from './Pages/Main';
 import Footer from './components/Footer';
 import NewsPage from './Pages/NewsPage';
 import SevereWeatherAlert from './Pages/SevereWeatherAlert';
+import Weather48Hours from './Pages/Weather48Hours';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setLat, setLng } from './redux/services/getCoords';
@@ -13,6 +14,7 @@ import { Routes, Route } from 'react-router-dom';
 import {
   useGetCurrentWeatherLocationQuery,
   useGetSevereWeatherAlertsQuery,
+  useGet48HourForecastQuery,
 } from './redux/services/weatherData';
 
 import './App.css';
@@ -32,6 +34,11 @@ function App() {
   const { data: weatherAlerts } = useGetSevereWeatherAlertsQuery({
     lat,
     lng,
+  });
+
+  const { data: weather48Hours } = useGet48HourForecastQuery({
+    lng,
+    lat,
   });
 
   useEffect(() => {
@@ -54,6 +61,10 @@ function App() {
           <Route
             path='/alert'
             element={<SevereWeatherAlert weatherAlerts={weatherAlerts} />}
+          />
+          <Route
+            path='/weather48h'
+            element={<Weather48Hours weather48Hours={weather48Hours} />}
           />
         </Routes>
       </div>

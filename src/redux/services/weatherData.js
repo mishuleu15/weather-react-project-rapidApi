@@ -19,10 +19,15 @@ export const weatherApi = createApi({
     getSevereWeatherAlerts: builder.query({
       query: ({ lng, lat }) => createRequest(`alerts?lon=${lng}&lat=${lat}`),
     }),
+    get48HourForecast: builder.query({
+      query: ({ lng, lat }) =>
+        createRequest(`forecast/hourly?lon=${lng}&lat=${lat}&hours=48`),
+    }),
   }),
 });
 
 export const {
   useGetCurrentWeatherLocationQuery,
   useGetSevereWeatherAlertsQuery,
+  useGet48HourForecastQuery,
 } = weatherApi;
