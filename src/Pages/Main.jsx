@@ -28,8 +28,6 @@ const Main = () => {
           </Col>
 
           <Col>
-            <h3>Top Stories</h3>
-            <hr />
             <NewsCard simplified />
           </Col>
         </Row>

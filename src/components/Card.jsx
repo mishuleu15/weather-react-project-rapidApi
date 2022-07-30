@@ -33,11 +33,7 @@ const Card = () => {
         <div className='row g-0'>
           <div className='col-md-4'>
             <img
-              src={
-                weatherData.data[0]?.precip === 0
-                  ? require('../img/sunny.png')
-                  : require('../img/logo.png')
-              }
+              src={`https://www.weatherbit.io/static/img/icons/${weatherData.data[0]?.weather?.icon}.png`}
               className='img-fluid rounded-start'
               alt='...'
             />

@@ -159,6 +159,16 @@ hr {
   margin: 2rem auto;
 }
 
+.news-title {
+  width: 58%;
+  margin: 1rem auto;
+  background-color: #fff;
+  border-radius: 5px;
+  border-bottom: 1px solid #888888;
+  padding: 1rem;
+  z-index: 1;
+}
+
 .spinner-grow {
   position: absolute;
 
@@ -268,6 +278,9 @@ hr {
 
 .weather48Hours-container {
   min-height: 100vh;
+  width: 80%;
+  margin: 5rem auto;
+  display: flex;
 }
 
 .collapse-text {
@@ -275,11 +288,70 @@ hr {
   justify-content: space-evenly;
 }
 
+.accordion {
+  --bs-accordion-active-bg: #fff !important;
+  --bs-accordion-active-color: cadetblue !important;
+  --bs-accordion-btn-focus-border-color: none !important;
+  --bs-accordion-btn-focus-box-shadow: none !important;
+}
+
+.accordion-item {
+  border-left: 5px solid #ff6961 !important;
+  /* border-top-left-radius: 0 !important; */
+}
+
+button.accordion-button {
+  justify-content: space-between;
+  margin-right: 0 !important;
+}
+
+button.accordion-button.collapsed::after {
+  margin: 0;
+}
+
+.accordion-button::after {
+  margin: 0 !important;
+}
+.weather48Hours-element {
+  margin: 0.5rem auto;
+}
+
+.weather48Hours-img {
+  width: 5rem;
+}
+
+.weather48Hours-temp {
+  font-size: 2rem;
+}
+
+.weather48Hours-realFeelTemp {
+  font-weight: 400;
+}
+
+.weather48Hours-news {
+  margin-top: 20rem !important;
+}
+span.weather48Hours-precip {
+  font-weight: 400;
+  text-align: justify !important;
+}
+@media (max-width: 845px) {
+  .weather48Hours-container {
+    width: 95%;
+  }
+}
+
 @media (max-width: 810px) {
   .container-newsPage {
     grid-template-columns: repeat(2, 1fr);
     width: 95%;
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 770px) {
+  .weather48Hours-news {
+    margin-top: 2rem !important;
   }
 }
 

@@ -20,6 +20,7 @@ const NewsCard = ({ simplified }) => {
   } else {
     return (
       <>
+        {simplified && <h3 className='news-title'>Top Stories</h3>}
         {weatherNews?.value?.map((news) => {
           return (
             <a
