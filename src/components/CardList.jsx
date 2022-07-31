@@ -14,7 +14,7 @@ const CardList = ({ data }) => {
     return;
   } else {
     return (
-      <div className='card list' style={{ width: '18rem' }}>
+      <div className='card list'>
         <ul className='list-group list-group-flush'>
           <li className='list-group-item'>
             <span className='card-list-header'>Sunrise</span>{' '}

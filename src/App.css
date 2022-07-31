@@ -72,12 +72,28 @@ span {
   margin-top: 1rem;
 }
 
-.active {
-  color: greenyellow;
+.green {
+  color: hsl(84, 100%, 59%);
 }
 
-.inactive {
-  color: yellow;
+.yellow {
+  color: hsl(55, 100%, 50%);
+}
+
+.orange {
+  color: hsl(39, 100%, 50%);
+}
+
+.red {
+  color: hsl(0, 100%, 50%);
+}
+
+.purple {
+  color: hsl(300, 100%, 25%);
+}
+
+.maroon {
+  color: hsl(0, 100%, 25%);
 }
 
 .card-title {
@@ -93,6 +109,10 @@ span {
 .card-value-temp {
   color: cadetblue;
   font-size: 3rem;
+}
+
+.card.list {
+  width: 18rem;
 }
 
 .card-list-header {
@@ -229,6 +249,10 @@ hr {
   margin-top: 1rem;
 }
 
+p.card-text {
+  margin-right: 1rem;
+}
+
 .card-link.text {
   display: flex;
   flex-direction: column;
@@ -278,14 +302,36 @@ hr {
 
 .weather48Hours-container {
   min-height: 100vh;
-  width: 80%;
+  width: 90%;
   margin: 5rem auto;
   display: flex;
 }
 
 .collapse-text {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  margin: 0 -0.5em;
+}
+
+.list-group-item {
+  font-size: 1.1rem;
+}
+
+.list-group-item .left {
+  margin: 0 6em 0 0;
+}
+
+.list-group-item .right {
+  margin: 0 0 0 6em;
+}
+
+.collapse-text-line {
+  margin: 0 !important;
+  width: 100%;
+}
+
+.list-group-separator {
+  display: none;
 }
 
 .accordion {
@@ -293,6 +339,7 @@ hr {
   --bs-accordion-active-color: cadetblue !important;
   --bs-accordion-btn-focus-border-color: none !important;
   --bs-accordion-btn-focus-box-shadow: none !important;
+  --bs-accordion-border-color: none !important;
 }
 
 .accordion-item {
@@ -335,6 +382,28 @@ span.weather48Hours-precip {
   font-weight: 400;
   text-align: justify !important;
 }
+
+@media (max-width: 1404px) {
+  .collapse-text {
+    flex-direction: column;
+  }
+  .list-group-separator {
+    display: block;
+    width: 100%;
+    margin: 0 !important;
+    color: #888888;
+  }
+}
+
+@media (max-width: 990px) {
+  .collapse-text {
+    flex-direction: row;
+  }
+  .list-group-separator {
+    display: none;
+  }
+}
+
 @media (max-width: 845px) {
   .weather48Hours-container {
     width: 95%;
@@ -353,6 +422,16 @@ span.weather48Hours-precip {
   .weather48Hours-news {
     margin-top: 2rem !important;
   }
+
+  .collapse-text {
+    flex-direction: column;
+  }
+  .list-group-separator {
+    display: block;
+    width: 100%;
+    margin: 0 !important;
+    color: #888888;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -365,5 +444,86 @@ span.weather48Hours-precip {
 
   .leaflet-container {
     width: 95%;
+  }
+}
+
+@media (max-width: 510px) {
+  button.accordion-button span {
+    font-size: 1rem;
+  }
+
+  button.accordion-button span.weather48Hours-precip {
+    display: none;
+  }
+
+  button.accordion-button img {
+    width: 3rem;
+  }
+
+  button.accordion-button::after {
+    display: none;
+  }
+
+  button.accordion-button.collapsed {
+    font-size: 1rem;
+  }
+
+  button.accordion-button.collapsed span {
+    font-size: 1rem;
+  }
+
+  button.accordion-button.collapsed img {
+    width: 3rem;
+  }
+
+  button.accordion-button.collapsed span.weather48Hours-precip {
+    display: none;
+  }
+
+  button.accordion-button.collapsed::after {
+    display: none;
+  }
+
+  .list-group-item {
+    font-size: 1rem;
+  }
+
+  .card {
+    font-size: 1rem;
+  }
+
+  .svg-inline--fa.fa-temperature-high.fa-2x {
+    display: none;
+  }
+
+  h5.card-title {
+    flex-direction: column;
+  }
+
+  span.card-value-temp {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 281px) {
+  .main-container {
+    width: 99%;
+    margin: 0 auto;
+  }
+  a.navbar-brand {
+    display: none;
+  }
+
+  html {
+    margin-right: -20px;
+  }
+
+  .footer {
+    font-size: 1rem;
+  }
+
+  .card.list {
+    width: 95%;
+    font-size: 0.7rem;
   }
 }

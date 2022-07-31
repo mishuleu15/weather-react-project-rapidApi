@@ -1,10 +1,12 @@
 import React from 'react';
 
-import millify from 'millify';
+import colorAirQuality from '../utils/airQuality';
 
 import { useSelector } from 'react-redux';
 
 import { useGetCurrentWeatherLocationQuery } from '../redux/services/weatherData';
+
+import millify from 'millify';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -25,7 +27,9 @@ const Card = () => {
 
   const { data: weatherData } = useGetCurrentWeatherLocationQuery({ lng, lat });
 
-  if (!weatherData) {
+  const airQuality = colorAirQuality(weatherData?.data[0]?.aqi);
+
+  if (!weatherData || !airQuality) {
     return;
   } else {
     return (
@@ -39,13 +43,7 @@ const Card = () => {
             />
             <h4>
               <span className='air-quality'>Air Quality</span>{' '}
-              <div
-                className={
-                  weatherData.data[0]?.aqi <= 50 ? 'active' : 'inactive'
-                }
-              >
-                {weatherData.data[0]?.aqi <= 50 ? 'Excellent' : 'Moderate'}
-              </div>
+              <div className={airQuality.color}>{airQuality.airQlty}</div>
             </h4>
           </div>
 
@@ -74,8 +72,9 @@ const Card = () => {
                   Precip{' '}
                   <FontAwesomeIcon icon='fa-xs fa-solid fa-droplet' size='lg' />{' '}
                   <span className='card-value'>
-                    {weatherData.data[0]?.precip}
-                  </span>
+                    {weatherData.data[0]?.precip.toFixed(2)}
+                  </span>{' '}
+                  mm
                 </p>
                 <p className='card-text'>
                   Wind{' '}

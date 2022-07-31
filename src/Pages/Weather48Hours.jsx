@@ -1,47 +1,42 @@
 import React from 'react';
 
+import NewsCard from '../components/NewsCard';
+import uvIndexCalc from '../utils/uvIndex';
+import timeConvert from '../utils/convertTime';
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Accordion from 'react-bootstrap/Accordion';
 
-import NewsCard from '../components/NewsCard';
+import millify from 'millify';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+
+import { faDroplet } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faDroplet);
 
 const Weather48Hours = ({ weather48Hours }) => {
-  console.log(weather48Hours?.data);
-
-  function tConvert(time) {
-    // Check correct time format and split into components
-    time = time
-      .toString()
-      .match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
-
-    if (time.length > 1) {
-      // If time format correct
-      time = time.slice(1); // Remove full string match value
-      time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
-      time[0] = +time[0] % 12 || 12; // Adjust hours
-    }
-    return time.join('').replaceAll(':00:00', ' '); // return adjusted time or original string
-  }
-
   console.log(weather48Hours?.data);
 
   return (
     <div className='weather48Hours-container'>
       <Container fluid>
         <Row>
-          <Col lg={6} md={6} sm={12}>
+          <Col lg={6} md={12} sm={12}>
             {weather48Hours?.data.map((data) => {
               return (
                 <Accordion
                   defaultActiveKey='0'
                   className='weather48Hours-element'
+                  key={data.datetime}
                 >
                   <Accordion.Item eventKey='1'>
                     <Accordion.Header>
-                      <div>{tConvert(data.timestamp_local.slice(11))}</div>
+                      <div>{timeConvert(data.timestamp_local.slice(11))}</div>
                       <img
                         className='weather48Hours-img'
                         src={`https://www.weatherbit.io/static/img/icons/${data?.weather?.icon}.png`}
@@ -57,32 +52,78 @@ const Weather48Hours = ({ weather48Hours }) => {
                         </div>
                       </span>
                       <span className='weather48Hours-precip'>
+                        <FontAwesomeIcon
+                          icon='fa-xs fa-solid fa-droplet'
+                          size='1x'
+                        />{' '}
                         {data.precip.toFixed(2)} mm
                       </span>
                     </Accordion.Header>
                     <Accordion.Body>
                       <div id='example-collapse-text' className='collapse-text'>
                         <ListGroup variant='flush'>
-                          <ListGroup.Item>Cras justo odio</ListGroup.Item>
                           <ListGroup.Item>
-                            Dapibus ac facilisis in
+                            <div>Wind</div>{' '}
+                            <div>
+                              {data.wind_cdir} {millify(data.wind_spd)} km/h
+                            </div>
                           </ListGroup.Item>
-                          <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+
                           <ListGroup.Item>
-                            Porta ac consectetur ac
+                            <div className='left'>Wind Gusts</div>
+                            <div>{data.wind_gust_spd} m/s</div>
+                          </ListGroup.Item>
+
+                          <ListGroup.Item>
+                            <div className='left'>Humidity</div>
+                            <div>{data.rh}%</div>
+                          </ListGroup.Item>
+
+                          <ListGroup.Item>
+                            <div className='left'>Max UV Index</div>
+                            <div>
+                              {data.uv.toFixed()}{' '}
+                              {uvIndexCalc(data.uv.toFixed())}
+                            </div>
                           </ListGroup.Item>
                         </ListGroup>
-                        <ListGroup variant='flush'>
-                          <ListGroup.Item>Cras justo odio</ListGroup.Item>
+                        <hr className='list-group-separator' />
+                        <ListGroup
+                          variant='flush'
+                          className='collapse-text-colon2'
+                        >
                           <ListGroup.Item>
-                            Dapibus ac facilisis in
+                            <div>Dew Point</div>
+                            <div className='right'>
+                              {data.dewpt.toFixed(0)}&#8451;
+                            </div>
                           </ListGroup.Item>
-                          <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+
                           <ListGroup.Item>
-                            Porta ac consectetur ac
+                            <div>Cloud Cover</div>
+                            <div className='right'>
+                              {data.clouds.toFixed(0)}%
+                            </div>
+                          </ListGroup.Item>
+
+                          <ListGroup.Item>
+                            <div>Visibility</div>
+                            <div className='right'>
+                              {data.vis.toFixed(0)} Km
+                            </div>
+                          </ListGroup.Item>
+
+                          <ListGroup.Item>
+                            <div>Pressure</div>
+                            <div className='right'>
+                              {data.pres.toFixed(0)} mb
+                            </div>
                           </ListGroup.Item>
                         </ListGroup>
                       </div>
+                      <hr />
+                      <div>Weather</div>
+                      <h6 className='right'>{data.weather.description}</h6>
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
@@ -90,7 +131,7 @@ const Weather48Hours = ({ weather48Hours }) => {
             })}
           </Col>
 
-          <Col className='weather48Hours-news'>
+          <Col className='weather48Hours-news' lg={6}>
             <NewsCard simplified />
           </Col>
         </Row>

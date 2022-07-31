@@ -27,7 +27,7 @@ const Main = () => {
             <CardLink />
           </Col>
 
-          <Col>
+          <Col sm={12} md={6}>
             <NewsCard simplified />
           </Col>
         </Row>

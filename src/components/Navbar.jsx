@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 const Navbar = ({ data }) => {
   if (!data) {
     return;
@@ -13,9 +15,9 @@ const Navbar = ({ data }) => {
             src={require('../img/weather.png')}
             alt='...'
           />
-          <a className='navbar-brand' href='/#'>
+          <Link className='navbar-brand' to='/'>
             RoboWeather
-          </a>
+          </Link>
           <button
             className='navbar-toggler'
             type='button'
@@ -30,16 +32,26 @@ const Navbar = ({ data }) => {
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
               <li className='nav-item'>
-                <a className='nav-link active' aria-current='page' href='/#'>
-                  Home
-                </a>
+                <Link className='nav-link active' aria-current='page' to='/'>
+                  TODAY
+                </Link>
               </li>
               <li className='nav-item'>
-                <a className='nav-link' href='/#'>
-                  Link
-                </a>
+                <Link className='nav-link' to='/weather48h'>
+                  HOURLY
+                </Link>
               </li>
-              <li className='nav-item dropdown'>
+              <li className='nav-item'>
+                <Link className='nav-link' to='/news'>
+                  NEWS
+                </Link>
+              </li>
+              <li className='nav-item'>
+                <Link className='nav-link' to='/alert'>
+                  SEVERE WEATHER
+                </Link>
+              </li>
+              {/* <li className='nav-item dropdown'>
                 <a
                   className='nav-link dropdown-toggle'
                   href='/#'
@@ -70,7 +82,7 @@ const Navbar = ({ data }) => {
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               <li className='nav-item'>
                 <h2 className='nav-link city-name'>
                   {weatherData[0]?.city_name}
