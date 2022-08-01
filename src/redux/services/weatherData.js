@@ -23,6 +23,10 @@ export const weatherApi = createApi({
       query: ({ lng, lat }) =>
         createRequest(`forecast/hourly?lon=${lng}&lat=${lat}&hours=48`),
     }),
+    get16daysForecast: builder.query({
+      query: ({ lng, lat }) =>
+        createRequest(`forecast/daily?lon=${lng}&lat=${lat}`),
+    }),
   }),
 });
 
@@ -30,4 +34,5 @@ export const {
   useGetCurrentWeatherLocationQuery,
   useGetSevereWeatherAlertsQuery,
   useGet48HourForecastQuery,
+  useGet16daysForecastQuery,
 } = weatherApi;

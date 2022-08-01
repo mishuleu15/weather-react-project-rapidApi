@@ -42,6 +42,11 @@ const Navbar = ({ data }) => {
                 </Link>
               </li>
               <li className='nav-item'>
+                <Link className='nav-link' to='/weather16d'>
+                  16 DAYS
+                </Link>
+              </li>
+              <li className='nav-item'>
                 <Link className='nav-link' to='/news'>
                   NEWS
                 </Link>
@@ -51,6 +56,7 @@ const Navbar = ({ data }) => {
                   SEVERE WEATHER
                 </Link>
               </li>
+
               {/* <li className='nav-item dropdown'>
                 <a
                   className='nav-link dropdown-toggle'

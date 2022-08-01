@@ -383,6 +383,37 @@ span.weather48Hours-precip {
   text-align: justify !important;
 }
 
+.weather16days-container {
+  min-height: 100vh;
+}
+
+.weather16days-card {
+  background-color: #fff;
+  min-height: 40vh;
+  margin: 10rem auto;
+  width: 50vw;
+}
+
+.weather16days-list {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+}
+
+.weather16days-list li {
+  width: 10%;
+}
+
+.weather16days-line {
+  width: 95%;
+}
+
+.weather16days-img {
+  width: 65%;
+  display: inline;
+}
+
 @media (max-width: 1404px) {
   .collapse-text {
     flex-direction: column;
