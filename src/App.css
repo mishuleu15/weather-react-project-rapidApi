@@ -383,35 +383,50 @@ span.weather48Hours-precip {
   text-align: justify !important;
 }
 
-.weather16days-container {
+.weather14days-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.weather14days-container {
   min-height: 100vh;
 }
 
-.weather16days-card {
+.weather14days-card {
   background-color: #fff;
-  min-height: 40vh;
+  min-height: 70vh;
   margin: 10rem auto;
   width: 50vw;
+  font-size: 1.1rem;
 }
 
-.weather16days-list {
+.weather14days-title.title {
+  display: block;
+  color: cadetblue;
+  margin: 0;
+  padding: 1.5rem;
+}
+
+.weather14days-list {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   list-style: none;
   padding: 0;
 }
 
-.weather16days-list li {
-  width: 10%;
-}
-
-.weather16days-line {
+.weather14days-line {
   width: 95%;
 }
 
-.weather16days-img {
-  width: 65%;
-  display: inline;
+.weather14days-img {
+  width: 4rem;
+}
+
+.weather14days-test li {
+  padding: 5px;
 }
 
 @media (max-width: 1404px) {

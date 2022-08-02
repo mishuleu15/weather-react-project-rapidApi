@@ -29,6 +29,8 @@ const Card = () => {
 
   const airQuality = colorAirQuality(weatherData?.data[0]?.aqi);
 
+  // console.log(weatherData);
+
   if (!weatherData || !airQuality) {
     return;
   } else {

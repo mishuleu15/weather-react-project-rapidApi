@@ -42,8 +42,8 @@ const Navbar = ({ data }) => {
                 </Link>
               </li>
               <li className='nav-item'>
-                <Link className='nav-link' to='/weather16d'>
-                  16 DAYS
+                <Link className='nav-link' to='/weather14d'>
+                  14 DAYS
                 </Link>
               </li>
               <li className='nav-item'>
@@ -56,39 +56,6 @@ const Navbar = ({ data }) => {
                   SEVERE WEATHER
                 </Link>
               </li>
-
-              {/* <li className='nav-item dropdown'>
-                <a
-                  className='nav-link dropdown-toggle'
-                  href='/#'
-                  id='navbarDropdown'
-                  role='button'
-                  data-bs-toggle='dropdown'
-                  aria-expanded='false'
-                >
-                  Dropdown
-                </a>
-                <ul className='dropdown-menu' aria-labelledby='navbarDropdown'>
-                  <li>
-                    <a className='dropdown-item' href='/#'>
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className='dropdown-item' href='/#'>
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <hr className='dropdown-divider' />
-                  </li>
-                  <li>
-                    <a className='dropdown-item' href='/#'>
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
-              </li> */}
               <li className='nav-item'>
                 <h2 className='nav-link city-name'>
                   {weatherData[0]?.city_name}

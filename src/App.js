@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import NewsPage from './Pages/NewsPage';
 import SevereWeatherAlert from './Pages/SevereWeatherAlert';
 import Weather48Hours from './Pages/Weather48Hours';
-import Weather16Days from './Pages/Weather16Days';
+import Weather14Days from './Pages/Weather14Days';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setLat, setLng } from './redux/services/getCoords';
@@ -43,7 +43,7 @@ function App() {
     lat,
   });
 
-  const { data: weather16Days } = useGet16daysForecastQuery({
+  const { data: weather14Days } = useGet16daysForecastQuery({
     lng,
     lat,
   });
@@ -74,8 +74,8 @@ function App() {
             element={<Weather48Hours weather48Hours={weather48Hours} />}
           />
           <Route
-            path='/weather16d'
-            element={<Weather16Days weather16Days={weather16Days} />}
+            path='/weather14d'
+            element={<Weather14Days weather14Days={weather14Days} />}
           />
         </Routes>
       </div>
