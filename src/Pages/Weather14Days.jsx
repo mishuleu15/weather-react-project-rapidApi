@@ -2,17 +2,17 @@ import React from 'react';
 
 import NewsCard from '../components/NewsCard';
 
-const Weather14Days = ({ weather14Days }) => {
-  // console.log('weather16dayscompo', weather14Days);
+import { Link } from 'react-router-dom';
 
-  const test = (date) => {
+const Weather14Days = ({ weather14Days }) => {
+  const dateToDayName = (date) => {
     let dateTransform = date.replace(/\W/g, '/');
     let newDate = new Date(dateTransform);
-    let test = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+    let weekDay = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
       newDate
     );
 
-    return test;
+    return weekDay.slice(0, 1);
   };
 
   if (!weather14Days) {
@@ -26,26 +26,28 @@ const Weather14Days = ({ weather14Days }) => {
             <div>
               <hr className='weather14days-line' />
               <ul className='weather14days-list'>
-                {weather14Days?.data?.slice(0, 7).map((data) => {
+                {weather14Days?.data?.slice(0, 7).map((data, index) => {
                   return (
-                    <div className='weather14days-test'>
-                      <li>{test(data.datetime)}</li>
-                      <li>
-                        {data.datetime.substring(8).startsWith('0')
-                          ? data.datetime.substring(9)
-                          : data.datetime.substring(8)}
-                      </li>
-                      <li>
-                        <img
-                          className='weather14days-img'
-                          src={`https://www.weatherbit.io/static/img/icons/${data?.weather?.icon}.png`}
-                          alt=''
-                          srcset=''
-                        />
-                      </li>
-                      <li>{data.app_max_temp.toFixed(0)}&#176;</li>
-                      <li>{data.app_min_temp.toFixed(0)}&#176;</li>
-                    </div>
+                    <Link className='nav-link' to={`/weather/${index}`}>
+                      <div className='weather14days-date'>
+                        <li>{dateToDayName(data.datetime)}</li>
+                        <li>
+                          {data.datetime.substring(8).startsWith('0')
+                            ? data.datetime.substring(9)
+                            : data.datetime.substring(8)}
+                        </li>
+                        <li>
+                          <img
+                            className='weather14days-img'
+                            src={`https://www.weatherbit.io/static/img/icons/${data?.weather?.icon}.png`}
+                            alt=''
+                            srcset=''
+                          />
+                        </li>
+                        <li>{data.app_max_temp.toFixed(0)}&#176;</li>
+                        <li>{data.app_min_temp.toFixed(0)}&#176;</li>
+                      </div>
+                    </Link>
                   );
                 })}
               </ul>
@@ -53,8 +55,8 @@ const Weather14Days = ({ weather14Days }) => {
               <ul className='weather14days-list'>
                 {weather14Days.data.slice(7, 14).map((data) => {
                   return (
-                    <div className='weather14days-test'>
-                      <li>{test(data.datetime)}</li>
+                    <div className='weather14days-date'>
+                      <li>{dateToDayName(data.datetime)}</li>
                       <li>
                         {data.datetime.substring(8).startsWith('0')
                           ? data.datetime.substring(9)

@@ -7,6 +7,7 @@ import NewsPage from './Pages/NewsPage';
 import SevereWeatherAlert from './Pages/SevereWeatherAlert';
 import Weather48Hours from './Pages/Weather48Hours';
 import Weather14Days from './Pages/Weather14Days';
+import WeatherDetails from './Pages/WeatherDetails';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setLat, setLng } from './redux/services/getCoords';
@@ -76,6 +77,10 @@ function App() {
           <Route
             path='/weather14d'
             element={<Weather14Days weather14Days={weather14Days} />}
+          />
+          <Route
+            path='/weather/:dayId'
+            element={<WeatherDetails weather14Days={weather14Days} />}
           />
         </Routes>
       </div>

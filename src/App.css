@@ -425,8 +425,16 @@ span.weather48Hours-precip {
   width: 4rem;
 }
 
-.weather14days-test li {
+.weather14days-date li {
   padding: 5px;
+}
+
+.weatherDetails {
+  width: 80%;
+}
+
+.weatherDetails-heading {
+  margin-top: 50px;
 }
 
 @media (max-width: 1404px) {
@@ -441,12 +449,53 @@ span.weather48Hours-precip {
   }
 }
 
+@media (max-width: 1200px) {
+  .weather14days-section {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .weather14days-card {
+    width: 95%;
+  }
+
+  .weather14days-img {
+    width: 2.5rem;
+  }
+
+  .weather14days-section li {
+    font-size: 1rem;
+  }
+
+  h5.card-title {
+    font-size: 1rem;
+  }
+
+  p.card-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 1085px) {
+  .navbar-nav .nav-item {
+    font-size: 0.9rem;
+  }
+
+  a.navbar-brand {
+    display: none;
+  }
+}
+
 @media (max-width: 990px) {
   .collapse-text {
     flex-direction: row;
   }
   .list-group-separator {
     display: none;
+  }
+
+  .weather-details-text {
+    flex-direction: column;
   }
 }
 
@@ -531,7 +580,7 @@ span.weather48Hours-precip {
   }
 
   .list-group-item {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .card {
