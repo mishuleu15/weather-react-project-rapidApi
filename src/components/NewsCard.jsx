@@ -8,7 +8,6 @@ const NewsCard = ({ simplified }) => {
     count: simplified ? 5 : 25,
   });
 
-  // console.log(weatherNews);
   if (weatherNews === undefined) {
     return (
       <div

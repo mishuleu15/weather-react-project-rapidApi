@@ -2,12 +2,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const url = 'https://weatherbit-v1-mashape.p.rapidapi.com/';
 
-const cryptoAPIHeaders = {
+const weatherAPIHeaders = {
   'X-RapidAPI-Key': 'c29abdcf61msh8a83016bc2e84a1p136b72jsneefd4fa22fa6',
   'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com',
 };
 
-const createRequest = (url) => ({ url, headers: cryptoAPIHeaders });
+const createRequest = (url) => ({ url, headers: weatherAPIHeaders });
 
 export const weatherApi = createApi({
   reducerPath: 'weatherApi',

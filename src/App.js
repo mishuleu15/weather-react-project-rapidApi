@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Navbar from './components/Navbar';
+import NavbarTest from './components/NavbarTest';
 import Main from './Pages/Main';
 import Footer from './components/Footer';
 import NewsPage from './Pages/NewsPage';
@@ -20,6 +21,8 @@ import {
   useGet16daysForecastQuery,
 } from './redux/services/weatherData';
 
+import { useGetCurrentCitiesLocationQuery } from './redux/services/getCities';
+
 import './App.css';
 
 function App() {
@@ -33,6 +36,10 @@ function App() {
   // const data = { lat: 51.1657, lng: 10.4515 };
 
   const { data } = useGetCurrentWeatherLocationQuery({ lng, lat });
+
+  // const { data: city } = useGetCurrentCitiesLocationQuery('piatra');
+
+  // console.log(city);
 
   const { data: weatherAlerts } = useGetSevereWeatherAlertsQuery({
     lat,
@@ -61,7 +68,9 @@ function App() {
 
   return (
     <div className='App'>
+      <NavbarTest data={data} />
       <Navbar data={data} />
+
       <div className='routes'>
         <Routes>
           <Route exact path='/' element={<Main />} />
@@ -84,6 +93,7 @@ function App() {
           />
         </Routes>
       </div>
+
       <Footer />
     </div>
   );

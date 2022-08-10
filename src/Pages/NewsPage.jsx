@@ -7,13 +7,13 @@ const NewsPage = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <>
+    <div className='weatherNews-container'>
       <h1 className='weatherNews-title'>Weather Stories</h1>
       <hr />
       <div className='container-newsPage'>
         <NewsCard />
       </div>
-    </>
+    </div>
   );
 };
 
