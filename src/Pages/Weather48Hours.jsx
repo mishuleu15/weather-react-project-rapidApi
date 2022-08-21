@@ -20,7 +20,7 @@ import { faDroplet } from '@fortawesome/free-solid-svg-icons';
 library.add(faDroplet);
 
 const Weather48Hours = ({ weather48Hours }) => {
-  console.log(weather48Hours?.data);
+  // console.log(weather48Hours?.data);
 
   return (
     <div className='weather48Hours-container'>

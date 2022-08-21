@@ -1,27 +1,25 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import Button from 'react-bootstrap/Button';
+import Search from '../components/Search';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 
-import SearchBox from '../utils/searchBox';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setLat, setLng } from '../redux/services/getCoords';
 import { Link } from 'react-router-dom';
 
 function NavScrollExample({ data }) {
-  const [name, setName] = useState('');
+  const [searchData, setSearchData] = useState(null);
+  const dispatch = useDispatch();
 
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(name);
-  }
+  const handleOnSearchChange = (searchData) => {
+    const { value, label } = searchData;
+    setSearchData(label);
+    console.log(label);
+    dispatch(setLat(value.lat));
+    dispatch(setLng(value.long));
+  };
 
   if (!data) {
     return;
@@ -40,11 +38,7 @@ function NavScrollExample({ data }) {
           </Link>
           <Navbar.Toggle aria-controls='navbarScroll' />
           <Navbar.Collapse id='navbarScroll'>
-            <Nav
-              className='me-auto my-2 my-lg-0'
-              style={{ maxHeight: '100px' }}
-              navbarScroll
-            >
+            <Nav className='me-auto my-2 my-lg-0' navbarScroll>
               <Link className='nav-link active' aria-current='page' to='/'>
                 TODAY
               </Link>
@@ -61,25 +55,12 @@ function NavScrollExample({ data }) {
                 SEVERE WEATHER
               </Link>
               <h2 className='nav-link city-name'>
-                {weatherData[0]?.city_name}
+                {searchData === null ? weatherData[0]?.city_name : searchData}
               </h2>
             </Nav>
-
-            <Form className='d-flex' onSubmit={handleSubmit}>
-              <SearchBox />
-              <Form.Control
-                type='search'
-                placeholder='Search'
-                className='me-2'
-                aria-label='Search'
-                value={name}
-                onChange={handleNameChange}
-              />
-
-              <Button variant='outline-success' type='submit'>
-                Search
-              </Button>
-            </Form>
+            <div className='search-container'>
+              <Search onSearchChange={handleOnSearchChange} />
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>

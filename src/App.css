@@ -59,6 +59,11 @@ span {
   font-size: 1.2rem;
   font-weight: 700;
 }
+
+.search-container {
+  min-width: 30%;
+  margin: 0 auto;
+}
 .card-subsection {
   display: flex;
   justify-content: space-evenly;

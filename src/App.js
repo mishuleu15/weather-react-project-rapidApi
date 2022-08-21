@@ -69,7 +69,7 @@ function App() {
   return (
     <div className='App'>
       <NavbarTest data={data} />
-      <Navbar data={data} />
+      {/* <Navbar data={data} /> */}
 
       <div className='routes'>
         <Routes>
