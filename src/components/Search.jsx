@@ -3,8 +3,12 @@ import { AsyncPaginate } from 'react-select-async-paginate';
 
 import { geoApiOptions, GEO_API_URL } from './../utils/api';
 
+import { useDispatch } from 'react-redux';
+import { setLat, setLng } from '../redux/services/getCoords';
+
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
+  const dispatch = useDispatch();
 
   const loadOptions = (inputValue) => {
     return fetch(
@@ -27,7 +31,11 @@ const Search = ({ onSearchChange }) => {
   const handleOnChange = (searchData) => {
     setSearch(searchData);
     onSearchChange(searchData);
+
+    dispatch(setLat(searchData.value.lat));
+    dispatch(setLng(searchData.value.long));
   };
+
   return (
     <AsyncPaginate
       placeholder='Search for city'

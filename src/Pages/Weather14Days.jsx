@@ -3,8 +3,19 @@ import React from 'react';
 import NewsCard from '../components/NewsCard';
 
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const Weather14Days = ({ weather14Days }) => {
+import { useGet14daysForecastQuery } from '../redux/services/weatherData';
+
+const Weather14Days = () => {
+  const coords = useSelector((state) => state.setCoords);
+  const { lat, lng } = coords;
+
+  const { data: weather14Days } = useGet14daysForecastQuery({
+    lng,
+    lat,
+  });
+
   const dateToDayName = (date) => {
     let dateTransform = date.replace(/\W/g, '/');
     let newDate = new Date(dateTransform);
@@ -28,7 +39,11 @@ const Weather14Days = ({ weather14Days }) => {
               <ul className='weather14days-list'>
                 {weather14Days?.data?.slice(0, 7).map((data, index) => {
                   return (
-                    <Link className='nav-link' to={`/weather/${index}`}>
+                    <Link
+                      className='nav-link'
+                      to={`/weather/${index}`}
+                      key={data.datetime}
+                    >
                       <div className='weather14days-date'>
                         <li>{dateToDayName(data.datetime)}</li>
                         <li>
@@ -41,7 +56,7 @@ const Weather14Days = ({ weather14Days }) => {
                             className='weather14days-img'
                             src={`https://www.weatherbit.io/static/img/icons/${data?.weather?.icon}.png`}
                             alt=''
-                            srcset=''
+                            srcSet=''
                           />
                         </li>
                         <li>{data.app_max_temp.toFixed(0)}&#176;</li>
@@ -55,7 +70,7 @@ const Weather14Days = ({ weather14Days }) => {
               <ul className='weather14days-list'>
                 {weather14Days.data.slice(7, 14).map((data) => {
                   return (
-                    <div className='weather14days-date'>
+                    <div className='weather14days-date' key={data.datetime}>
                       <li>{dateToDayName(data.datetime)}</li>
                       <li>
                         {data.datetime.substring(8).startsWith('0')
@@ -67,7 +82,7 @@ const Weather14Days = ({ weather14Days }) => {
                           className='weather14days-img'
                           src={`https://www.weatherbit.io/static/img/icons/${data?.weather?.icon}.png`}
                           alt=''
-                          srcset=''
+                          srcSet=''
                         />
                       </li>
                       <li>{data.app_max_temp.toFixed(0)}&#176;</li>

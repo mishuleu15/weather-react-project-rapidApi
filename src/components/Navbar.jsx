@@ -1,16 +1,33 @@
-import React from 'react';
+import { useState } from 'react';
 
-import Search from '../components/Search';
+import Search from './Search';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+
+import { useDispatch } from 'react-redux';
+import { setLat, setLng } from '../redux/services/getCoords';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ data }) => {
+function NavScrollExample({ data }) {
+  const [searchData, setSearchData] = useState(null);
+  const dispatch = useDispatch();
+
+  const handleOnSearchChange = (searchData) => {
+    const { value, label } = searchData;
+    setSearchData(label);
+    dispatch(setLat(value.lat));
+    dispatch(setLng(value.long));
+  };
+
   if (!data) {
     return;
   } else {
     const { data: weatherData } = data;
+
     return (
-      <nav className='navbar navbar-expand-lg bg-light'>
-        <div className='container-fluid'>
+      <Navbar bg='light' expand='lg'>
+        <Container fluid>
           <img
             className='navbar-image'
             src={require('../img/weather.png')}
@@ -19,68 +36,36 @@ const Navbar = ({ data }) => {
           <Link className='navbar-brand' to='/'>
             RoboWeather
           </Link>
-          <button
-            className='navbar-toggler'
-            type='button'
-            data-bs-toggle='collapse'
-            data-bs-target='#navbarSupportedContent'
-            aria-controls='navbarSupportedContent'
-            aria-expanded='false'
-            aria-label='Toggle navigation'
-          >
-            <span className='navbar-toggler-icon'></span>
-          </button>
-          <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-            <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-              <li className='nav-item'>
-                <Link className='nav-link active' aria-current='page' to='/'>
-                  TODAY
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <Link className='nav-link' to='/weather48h'>
-                  HOURLY
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <Link className='nav-link' to='/weather14d'>
-                  14 DAYS
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <Link className='nav-link' to='/news'>
-                  NEWS
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <Link className='nav-link' to='/alert'>
-                  SEVERE WEATHER
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <h2 className='nav-link city-name'>
-                  {weatherData[0]?.city_name}
-                </h2>
-              </li>
-            </ul>
-            <Search />
-            {/* <form className='d-flex' role='search'>
-              <input
-                className='form-control me-2'
-                type='search'
-                placeholder='Search'
-                aria-label='Search'
-              />
-
-              <button className='btn btn-outline-success' type='submit'>
-                Search
-              </button>
-            </form> */}
-          </div>
-        </div>
-      </nav>
+          <Navbar.Toggle aria-controls='navbarScroll' />
+          <Navbar.Collapse id='navbarScroll'>
+            <Nav className='me-auto my-2 my-lg-0' navbarScroll>
+              <Link className='nav-link active' aria-current='page' to='/'>
+                TODAY
+              </Link>
+              <Link className='nav-link' to='/weather48h'>
+                HOURLY
+              </Link>
+              <Link className='nav-link' to='/weather14d'>
+                14 DAYS
+              </Link>
+              <Link className='nav-link' to='/news'>
+                NEWS
+              </Link>
+              <Link className='nav-link' to='/alert'>
+                SEVERE WEATHER
+              </Link>
+              <h2 className='nav-link city-name'>
+                {searchData === null ? weatherData[0]?.city_name : searchData}
+              </h2>
+            </Nav>
+            <div className='search-container'>
+              <Search onSearchChange={handleOnSearchChange} />
+            </div>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     );
   }
-};
+}
 
-export default Navbar;
+export default NavScrollExample;

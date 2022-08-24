@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+
+import { useGetSevereWeatherAlertsQuery } from '../redux/services/weatherData';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -19,10 +22,18 @@ import {
 
 library.add(faCloudBolt, faTornado, faGlobe);
 
-const SevereWeatherAlert = ({ weatherAlerts }) => {
+const SevereWeatherAlert = () => {
+  const coords = useSelector((state) => state.setCoords);
+  const { lat, lng } = coords;
+
+  const { data: weatherAlerts } = useGetSevereWeatherAlertsQuery({
+    lat,
+    lng,
+  });
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [weatherAlerts]);
 
   if (!weatherAlerts) {
     return;

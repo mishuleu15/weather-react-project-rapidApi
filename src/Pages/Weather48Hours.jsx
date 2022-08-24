@@ -11,6 +11,9 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Accordion from 'react-bootstrap/Accordion';
 
 import millify from 'millify';
+import { useSelector } from 'react-redux';
+
+import { useGet48HourForecastQuery } from '../redux/services/weatherData';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -19,8 +22,14 @@ import { faDroplet } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faDroplet);
 
-const Weather48Hours = ({ weather48Hours }) => {
-  // console.log(weather48Hours?.data);
+const Weather48Hours = () => {
+  const coords = useSelector((state) => state.setCoords);
+  const { lat, lng } = coords;
+
+  const { data: weather48Hours } = useGet48HourForecastQuery({
+    lat,
+    lng,
+  });
 
   return (
     <div className='weather48Hours-container'>

@@ -10,7 +10,10 @@ import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Accordion from 'react-bootstrap/Accordion';
 
+import { useGet14daysForecastQuery } from '../redux/services/weatherData';
+
 import millify from 'millify';
+import { useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -19,8 +22,16 @@ import { faDroplet } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faDroplet);
 
-const WeatherDetails = ({ weather14Days }) => {
+const WeatherDetails = () => {
   const { dayId } = useParams();
+
+  const coords = useSelector((state) => state.setCoords);
+  const { lat, lng } = coords;
+
+  const { data: weather14Days } = useGet14daysForecastQuery({
+    lng,
+    lat,
+  });
 
   const dateToDayName = (date) => {
     let dateTransform = date.replace(/\W/g, '/');
