@@ -36,7 +36,13 @@ const SevereWeatherAlert = () => {
   }, [weatherAlerts]);
 
   if (!weatherAlerts) {
-    return;
+    return (
+      <div
+        className='spinner-grow'
+        style={{ width: '10rem', height: '10rem' }}
+        role='status'
+      ></div>
+    );
   } else {
     return (
       <div className='weather_alert-container'>

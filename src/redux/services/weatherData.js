@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 const url = 'https://weatherbit-v1-mashape.p.rapidapi.com/';
 
 const weatherAPIHeaders = {
-  'X-RapidAPI-Key': 'c29abdcf61msh8a83016bc2e84a1p136b72jsneefd4fa22fa6',
+  'X-RapidAPI-Key': process.env.REACT_APP_WEATHER_BIT_API_KEY,
   'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com',
 };
 

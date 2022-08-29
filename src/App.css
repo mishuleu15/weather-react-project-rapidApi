@@ -17,7 +17,9 @@
   width: 50px;
   margin-right: 1rem;
 }
-
+.routes {
+  min-height: 100vh;
+}
 .card {
   margin: 0 auto;
 }
